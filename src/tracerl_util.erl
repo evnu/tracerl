@@ -13,7 +13,8 @@
 -define(tracerl_gen(Node),
         (case rpc:call(Node, erlang, system_info, [dynamic_trace]) of
              dtrace    -> tracerl_gen_dtrace;
-             systemtap -> tracerl_gen_systemtap
+             systemtap -> tracerl_gen_systemtap;
+             none -> exit(no_dynamic_trace_support)
          end)).
 
 trace(ScriptSrc, Action) ->
